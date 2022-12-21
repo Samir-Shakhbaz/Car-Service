@@ -28,4 +28,14 @@ public class Employee {
         this.phoneNumber = phoneNumber;
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }
+
+

@@ -1,11 +1,13 @@
 public class Customer {
 
-    private String firstName;
+    public String firstName;
     private String lastName;
     private String phoneNumber;
     Car car;
 
-    public Customer(String firstName, String lastName) {
+    public Customer() {
+//        firstName = "Bob";
+//        lastName = "Pedroso";
 
     }
 
@@ -21,9 +23,14 @@ public class Customer {
         return lastName;
     }
 
-    public void setLastName(){
+    public void setLastName(String lastName){
         this.lastName = lastName;
     }
 
+    public String getPhoneNumber() { return phoneNumber; }
+
+    public void setPhoneNumber (String phoneNumber) { this.phoneNumber = phoneNumber;}
+
+Car car1 = new Car();
 
 }
