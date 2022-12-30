@@ -1,22 +1,34 @@
+import java.util.*;
+
 public class CarServiceApplication {
     public static void main(String[] args) {
 
-        Customer customer1 = new Customer();
-        Car car1 = new Car();
-        customer1.setFirstName("John");
 
 
-        System.out.println(customer1.getFirstName() + customer1.getLastName());
+        Customer customer = new Customer("Jerry ", "Mouse", new Car());
+        Car car1 = new Car("Toyota", "Camry", 2022);
+        Employee employee = new Employee("Mike", "1234");
+        ServiceOwner owner = new ServiceOwner();
 
-        Order order1 = new Order();
-        order1.setCustomer(customer1);
-        order1.setOrderNumber(123);
-        order1.setMechanicName("Mike");
-        order1.setServiceNeeded("Change tires");
-        order1.customer.setFirstName("Bob");
-        order1.customer.setLastName("Pedroso");
-        order1.customer.setPhoneNumber("1234");
-        order1.customer.car1.setModel("Ford");
-        System.out.println(customer1.getFirstName());
-    }
+        Order order1 = new Order(customer, car1, employee, 222, "change tires");
+
+
+        System.out.println(customer.getFirstName() + customer.getLastName() +", owner of: " + car1.getMake() + " , "
+                + car1.getModel() + " , " + car1.getYear() + " needs to " + order1.getServiceNeeded() + ". Mechanic assigned: " + employee.getFirstName()
+                + ", extension number: " + employee.getPhoneNumber());
+
+        System.out.println(owner.printOwner());
+
+        System.out.println(order1);
+
+        List<Tire> tireList = new ArrayList<Tire>(4);
+        tireList.remove(new Tire());
+        tireList.remove(new Tire());
+        tireList.remove(new Tire());
+        tireList.remove(new Tire());
+
+        car1.getTires();
+
+
+        }
 }

@@ -4,6 +4,11 @@ public class Employee {
     private String lastName;
     private String phoneNumber;
 
+    public Employee(String firstName, String phoneNumber) {
+        this.firstName = firstName;
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getFirstName(){
         return firstName;
     }

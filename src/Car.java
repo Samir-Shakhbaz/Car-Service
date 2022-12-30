@@ -1,8 +1,24 @@
+import java.util.List;
+
 public class Car {
 
     private String make;
     private String model;
     private int year;
+
+    private List<Tire> tireList;
+    private Tire [] tires = new Tire[4];
+    public Car(Tire[] tires) {
+        this.tires = tires;
+    }
+
+    public Tire[] getTires() {
+        return tires;
+    }
+
+    public void setTires(Tire[] tires) {
+        this.tires = tires;
+    }
 
     public Car(){}
 
@@ -28,4 +44,12 @@ public class Car {
 
     public void setYear(int year){this.year = year;}
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", year=" + year +
+                '}';
+    }
 }

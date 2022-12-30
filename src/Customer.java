@@ -1,31 +1,27 @@
 public class Customer {
 
-    public String firstName;
+    private String firstName;
     private String lastName;
     private String phoneNumber;
-    Car car;
+    private Car car;
 
-    public Customer() {
-//        firstName = "Bob";
-//        lastName = "Pedroso";
-
-    }
+public Customer (String firstName, String lastName, Car car){
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.car = car;
+}
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+
 
     public String getLastName(){
         return lastName;
     }
 
-    public void setLastName(String lastName){
-        this.lastName = lastName;
-    }
+
 
     public String getPhoneNumber() { return phoneNumber; }
 
@@ -33,4 +29,14 @@ public class Customer {
 
 Car car1 = new Car();
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", car=" + car +
+                ", car1=" + car1 +
+                '}';
+    }
 }
