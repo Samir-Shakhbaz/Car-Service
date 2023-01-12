@@ -1,12 +1,22 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Employee {
 
     private String firstName;
     private String lastName;
     private String phoneNumber;
 
+
+
+
+
     public Employee(String firstName, String phoneNumber) {
         this.firstName = firstName;
         this.phoneNumber = phoneNumber;
+    }
+
+    public Employee(int y) {
     }
 
     public String getFirstName(){

@@ -1,11 +1,19 @@
 public class Tire {
 
+    private int tireId;
     private String make;
 
-    public Tire(){}
-
-    public Tire(String make) {
+    public Tire(int tireId, String make) {
+        this.tireId = tireId;
         this.make = make;
+    }
+
+    public int getTireId() {
+        return tireId;
+    }
+
+    public void setTireId(int tireId) {
+        this.tireId = tireId;
     }
 
     public String getMake() {
@@ -19,7 +27,11 @@ public class Tire {
     @Override
     public String toString() {
         return "Tire{" +
-                "make='" + make + '\'' +
+                "tireId=" + tireId +
+                ", make='" + make + '\'' +
                 '}';
     }
 }
+
+
+

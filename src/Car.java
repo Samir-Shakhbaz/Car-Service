@@ -1,24 +1,41 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Car {
 
+    private int id;
     private String make;
     private String model;
     private int year;
 
     private List<Tire> tireList;
-    private Tire [] tires = new Tire[4];
-    public Car(Tire[] tires) {
-        this.tires = tires;
+//    private Tire [] tires = new Tire[4];
+//    public Car(Tire[] tires) {
+//        this.tires = tires;
+//    }
+
+
+    public int getId() {
+        return id;
     }
 
-    public Tire[] getTires() {
-        return tires;
+    public Car(int id) {
+        this.id = id;
+        this.tireList = new ArrayList<>();
     }
 
-    public void setTires(Tire[] tires) {
-        this.tires = tires;
+    public List<Tire> getTireList() {
+        return tireList;
     }
+
+    //    public Tire[] getTires() {
+//        return tires;
+//    }
+//
+//    public void setTires(Tire[] tires) {
+//        this.tires = tires;
+//    }
 
     public Car(){}
 
@@ -47,9 +64,11 @@ public class Car {
     @Override
     public String toString() {
         return "Car{" +
-                "make='" + make + '\'' +
+                "id=" + id +
+                ", make='" + make + '\'' +
                 ", model='" + model + '\'' +
                 ", year=" + year +
+                ", tireList=" + tireList +
                 '}';
     }
 }

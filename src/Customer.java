@@ -1,15 +1,35 @@
 public class Customer {
 
+    private int id;
+
     private String firstName;
     private String lastName;
     private String phoneNumber;
+
     private Car car;
 
-public Customer (String firstName, String lastName, Car car){
+    private long creditCard = 1111222233334444l;
+
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+
+
+
+public Customer (int id, String firstName, String lastName, Car car){
     this.firstName = firstName;
     this.lastName = lastName;
     this.car = car;
 }
+
+    public Customer(int c) {
+    }
 
     public String getFirstName() {
         return firstName;
@@ -27,7 +47,7 @@ public Customer (String firstName, String lastName, Car car){
 
     public void setPhoneNumber (String phoneNumber) { this.phoneNumber = phoneNumber;}
 
-Car car1 = new Car();
+
 
     @Override
     public String toString() {
@@ -36,7 +56,8 @@ Car car1 = new Car();
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", car=" + car +
-                ", car1=" + car1 +
                 '}';
     }
+
+
 }
