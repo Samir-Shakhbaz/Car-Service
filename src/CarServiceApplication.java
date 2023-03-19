@@ -5,22 +5,6 @@ public class CarServiceApplication {
     public static void main(String[] args) {
 
 
-//        Customer customer = new Customer(2, "Jerry ", "Mouse", new Car());
-//        Car car1 = new Car("Toyota", "Camry", 2022);
-//        Employee employee = new Employee("Mike", "1234");
-//        ServiceOwner owner = new ServiceOwner();
-//
-//        Order order1 = new Order(customer, car1, employee, 222, "change tires");
-//
-//
-//        System.out.println(customer.getFirstName() + customer.getLastName() + ", owner of: " + car1.getMake() + " , "
-//                + car1.getModel() + " , " + car1.getYear() + " needs to " + order1.getServiceNeeded() + ". Mechanic assigned: " + employee.getFirstName()
-//                + ", extension number: " + employee.getPhoneNumber());
-//
-//        System.out.println(owner.printOwner());
-//
-//        System.out.println(order1);
-
 //Create employees
 
         List<Customer> customers = new ArrayList<>();
@@ -57,11 +41,11 @@ public class CarServiceApplication {
 
 //        System.out.println(cars);
 
-        Storage storage = new Storage();
+        Storage storage = new Storage(summerTires, winterTires);
 //        storage.setSummerTires(summerTires);
 //        storage.getSummerTires();
-        storage.setSummerTires(summerTires);
-        storage.setWinterTires(winterTires);// В чём разница?
+//        storage.setSummerTires(summerTires);
+//        storage.setWinterTires(winterTires);// В чём разница?
         System.out.println("The number of summer tires in the storage: " + storage.getSummerTires().size());
         System.out.println("The number of winter tires in the storage: " + storage.getWinterTires().size());
 
@@ -143,6 +127,8 @@ public class CarServiceApplication {
             System.out.println(o.getStatus());
         }
 
+        System.out.println("||||||||||||||||||||||||||||||||||" + storage.getThisCarTires().toString());
+
 
 
 
@@ -176,6 +162,7 @@ public class CarServiceApplication {
 
 
             //Create 15 cars
+//        storage.takeOfTires();
         }
     }
 

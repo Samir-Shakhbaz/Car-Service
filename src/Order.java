@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -34,9 +35,17 @@ public class Order {
             Tire tire = car.getTireList().get(0);
             car.getTireList().remove(0);
             storage.getSummerTires().add(tire);
+            if(storage.getThisCarTires().containsKey(car)){
+              List<Tire> tireList = storage.getThisCarTires().get(car);
+              tireList.add(tire);
+              storage.getThisCarTires().put(car, tireList);
+            } else {
+                List<Tire> tireList = new ArrayList<>();
+                tireList.add(tire);
+                storage.getThisCarTires().put(car, tireList);
+            }
             System.out.println(tire);
         }
-
 
         for (int i = 0; i < 4; i++) {
             int id = random.nextInt(storage.getWinterTires().size());
