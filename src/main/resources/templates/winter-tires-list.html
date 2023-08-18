@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Winter Tires List</title>
+    <div th:replace="fragments :: header"/>
+</head>
+
+<body style="background-color:#EDF1FF">
+
+<div th:replace="fragments :: navigation"></div>
+
+<link th:href="@{/css/style_lamborghini.css}" rel="stylesheet"/>
+
+<div align="center">
+    <h1>Winter Tires List</h1>
+    <a th:href="@{/tire/winter-tires-list}">Add New Tire</a><br/>
+
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Tire ID</th>
+            <th>Make</th>
+            <th>Status</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tire : ${allTiresList}">
+            <td th:text="${tire.tireId}">Tire ID</td>
+            <td th:text="${tire.make}">Make</td>
+            <td th:text="${tire.status}">Status</td>
+            <td th:text="${tire.type}">Type</td>
+            <td>
+                <!-- Actions -->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

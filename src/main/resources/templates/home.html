@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Service</title>
+    <div th:replace="fragments :: header"/>
+</head>
+
+<body style="background-color:#EDF1FF">
+
+<div th:replace="fragments :: navigation"></div>
+
+<!--    <style>-->
+<!--        body {-->
+<!--        background-image:url("aaa.jpeg");-->
+<!--        }-->
+
+<!--    </style>-->
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+
+
+
+<body>
+<!--<img src="GeneralPhotoJava.jpg" alt="description of image">-->
+<h4>Car Service Home Page</h4>
+
+<!--<h3>Weather</h3><h2 th:text="${weather}"></h2>-->
+
+<a href="customer/new">
+<div class="clickable-box" onclick="handleClick()">New Customer</div>
+</a>
+
+<a href="customer/customer-list">
+    <div class="clickable-box" onclick="handleClick()">Customer List</div>
+</a>
+
+<a href="/employee/employee-list">
+    <div class="clickable-box" onclick="handleClick()">Employee List</div>
+</a>
+
+<a href="/order/order-list">
+    <div class="clickable-box" onclick="handleClick()">Order List</div>
+</a>
+
+<a href="/about">
+    <div class="clickable-box" onclick="handleClick()">About</div>
+</a>
+
+
+</body>
+</html>

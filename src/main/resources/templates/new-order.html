@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Customer</title>
+    <div th:replace="fragments :: header"/>
+</head>
+
+<body style="background-color:#EDF1FF">
+
+<div th:replace="fragments :: navigation"></div>
+
+<link th:href="@{/css/style_chevy.css}" rel="stylesheet"/>
+
+<body>
+<div align="center">
+
+    <h1>New Order</h1>
+
+<!--    <h2 th:text="${customer.id} + ' ' + ${customer.firstName} + ' ' + ${customer.lastName} + ' ' + ${customer.phoneNumber}"></h2>-->
+    <h2>Customer ID: <span th:text="${customer.id} + ' '"></span></h2>
+    <h2>Customer First Name: <span th:text="${customer.firstName} + ' '"></span></h2>
+    <h2>Customer Last Name: <span th:text="${customer.lastName} + ' '"></span></h2>
+    <h2>Customer Phone: <span th:text="${customer.phoneNumber}"></span></h2>
+    <h2>Car Make: <span th:text="${customer.car.make} + ' '"></span></h2>
+    <h2>Car Year: <span th:text="${customer.car.year}"></span></h2>
+
+    <!--        <h2 th:text="${question.id} + ' ' + ${question.name}"></h2>-->
+    <table>
+        <thead>
+        <tr>
+            <td>
+                id
+            </td>
+            <td>
+                type
+            </td>
+            <td>
+                name
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tire : ${customer.car.getSummerTires()}">
+            <td th:text="${tire.tireId}">
+            </td>
+            <td th:text="${tire.type}">
+            </td>
+            <td th:text="${tire.make}">
+            </td>
+        </tr>
+        </tbody>
+        <tbody>
+        <tr th:each="tire : ${customer.car.getWinterTires()}">
+            <td th:text="${tire.tireId}">
+            </td>
+            <td th:text="${tire.type}">
+            </td>
+            <td th:text="${tire.make}">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <!--
+    Here is the form that will be used to save the new customer.
+    The form is tied to the Customer object you added to the model,
+    and on submit it will hit the /save endpoint using the POST method.
+    -->
+    <form action="#" th:action="@{/order/save}" th:object="${order}" method="post">
+        <input type="hidden" name="customerId" th:value="${customer.id}" />
+
+        <!--
+        These input fields are used to collect the information
+        required to complete the referenced Customer object.
+        -->
+        <br>
+        <br>
+        <br>
+        <h3>Service Needed:</h3>
+
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Oil Change:</td>
+                <td><input type="checkbox" th:field="*{oilChange}"></td>
+            </tr>
+            <tr>
+                <td>Change Tires to Winter:</td>
+                <td><input type="checkbox" th:field="*{toWinter}"></td>
+            </tr>
+            <tr>
+                <td>Change Tires to Summer:</td>
+                <td><input type="checkbox" th:field="*{toSummer}"></td>
+            </tr>
+<!--            <tr>-->
+<!--                <td>Last Name:</td>-->
+<!--                <td><input type="text" th:field="*{lastName}" required/></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Phone Number:</td>-->
+<!--                <td><input type="number" th:field="*{phoneNumber}" required/></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+
+
+        </table>
+
+
+<!--            <input type="hidden" name="employeeId" th:value="${employee.id}" />-->
+        <h3>Service Needed:</h3>
+
+        <table border="0" cellpadding="10">
+            <thead>
+            <tr>
+                <td>Assign Employee</td>
+            </tr>
+            </thead>
+<!--            <tr>-->
+<!--                <td>Assign Employee:-->
+<!--                    <select class="form-select" name="employeeId" style="color: blue;">-->
+<!--                        <option th:if="${employeeList.isEmpty()}">None Available</option>-->
+<!--                        <option value="" selected disabled>Choose Employee</option>-->
+<!--                        <option th:each="employee : ${employeeList}" th:value="${employee.id}" th:text="${employee.firstName}" style="color: blue;"></option>-->
+<!--&lt;!&ndash;                        <option th:each="employee : ${employeeList}" th:value="${employee.firstName}" th:text="${employee.firstName}" th:text="${employee.toString()}" style="color: blue;"></option>&ndash;&gt;-->
+
+<!--                    </select></td>-->
+<!--            </tr>-->
+
+            <tr>
+                <td>Assign Employee:
+                    <select class="form-select" name="employeeId" style="color: blue;">
+                        <option th:if="${employeeList.isEmpty()}">None Available</option>
+                        <option value="" selected disabled>Choose Employee</option>
+                        <option th:each="employee : ${employeeList}" th:value="${employee.id}" th:text="${employee.firstName}" th:unless="${employee.orders != null and employee.orders.size() > 0}" style="color: blue;"></option>
+                    </select>
+                </td>
+            </tr>
+
+        </table>
+
+        <div colspan="2">
+            <button type="submit" th:disabled="${employeeList.isEmpty()}">Save</button>
+        </div>
+        </form>
+
+</html>

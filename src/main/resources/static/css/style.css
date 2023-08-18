@@ -1,0 +1,49 @@
+h4 {
+    color:white;
+    font-size: 4em;
+}
+
+body {
+  background-color: #fffacd;
+
+}
+
+
+table {
+  table-layout: fixed ;
+  width: 25% ;
+}
+td {
+  width: 25% ;
+}
+
+
+body {
+  background-image:url('images/aaa.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+.clickable-box {
+  width: 200px;
+  height: 100px;
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  line-height: 100px;
+  cursor: pointer;
+}
+
+
+@media (max-width: 400px) {
+    .table-responsive {
+        font-size:20px !important;
+    }
+}
+
+/*body {
+    background-image:url('images/WhiteHouse.jpg');\
+    color:white;
+}
+*/

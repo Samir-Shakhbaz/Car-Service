@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer List</title>
+    <div th:replace="fragments :: header"/>
+</head>
+
+<body style="background-color:#EDF1FF">
+
+<div th:replace="fragments :: navigation"></div>
+
+<link th:href="@{/css/style_Aston Martin.css}" rel="stylesheet"/>
+
+<body>
+<div align="center">
+
+    <h1>Order List</h1>
+<!--    <a th:href="@{/customer/new}">Add New Customer</a><br/>-->
+
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Order ID</th>
+<!--            <th>First Name</th>-->
+            <th>Customer Last Name</th>
+            <th>Employee</th>
+<!--            <th>Car Make</th>-->
+            <th>Order Status</th>
+            <th>Phone Number</th>
+
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orderList}">
+            <td th:text="${order.id}">Order ID</td>
+<!--            <td th:text="${customer.firstName}">First Name</td>-->
+            <td th:text="${order.customer.lastName}">Customer Last Name</td>
+<!--            <td th:text="${customer.phoneNumber}">Phone Number</td>-->
+<!--            <td th:text="${customer.car?.make}">Car Make</td>-->
+
+            <td th:text="${order.employee.firstName}">Employee</td>
+<!--            <td th:text="${order.status}">Order Status</td>-->
+            <td>
+                <a th:if="${order.status == 'completed'}" th:href="@{/order/completed/{orderId}(orderId=${order.id})}">
+                    <span th:text="${order.status}"></span>
+                </a>
+                <span th:unless="${order.status == 'completed'}" th:text="${order.status}"></span>
+            </td>
+            <td th:text="${order.employee.phoneNumber}">Phone Number</td>
+
+            <td>
+
+<!--                <a th:href="@{'/customer/edit/' + ${customer.id}}">Edit</a>-->
+                <a th:href="@{'/order/delete/' + ${order.id}}">Delete</a>
+<!--                &lt;!&ndash;            <a th:href="@{'/order/new?customerId=' + ${customer.id}}">Create New Order</a><br/>&ndash;&gt;-->
+<!--                <a th:href="@{'/order/new?customerId=' + ${customer.id}}">Create New Order</a>-->
+
+                <!--            <a th:href="@{/order/new(id=${customer.id}, firstName=${customer.firstName}, lastName=${customer.lastName}, phoneNumber=${customer.phoneNumber})}">-->
+                <!--                Create New Order-->
+                <!--            </a>-->
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</body>
+</html>

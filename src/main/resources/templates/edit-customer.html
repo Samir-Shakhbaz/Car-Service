@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <title>Edit Customer</title>
+  <link th:replace="fragments :: header" />
+  <link th:href="@{/css/style_transformers.css}" rel="stylesheet" />
+</head>
+<body style="background-color:#EDF1FF">
+<div th:replace="fragments :: navigation"></div>
+<div align="center">
+  <h1>Edit Customer</h1>
+  <br/>
+  <!--
+  The form below uses a structure similar to the new-customer page.  But this time,
+  since the Customer object fields were populated before it was added to the model, their
+  values populate the fields here. Any changes to the fields then POST to the update endpoint.
+  -->
+  <form action="#" th:action="@{'/customer/update/' + ${customer.id}}" th:object="${customer}"
+        method="post">
+    <table border="0" cellpadding="10">
+      <tr>
+        <td>Customer ID:</td>
+        <td><input type="text" th:field="*{id}" readonly/></td>
+      </tr>
+      <tr>
+        <td>First Name:</td>
+        <td><input type="text" th:field="*{firstName}" required/></td>
+      </tr>
+      <tr>
+        <td>Last Name:</td>
+        <td><input type="text" th:field="*{lastName}" required/></td>
+      </tr>
+      <tr>
+        <td>Phone:</td>
+        <td><input type="number" th:field="*{phoneNumber}" required/></td>
+      </tr>
+      <tr>
+        <td>Car Make:</td>
+        <td><input type="text" th:field="*{car.make}" required/></td>
+      </tr>
+      <tr>
+        <td>Car Year:</td>
+        <td><input type="text" th:field="*{car.year}" required/></td>
+      </tr>
+<!--      <tr th:each="tire : ${customer.car.tireList}">-->
+<!--        <td>Tire Id:</td>-->
+<!--        <td><input type="text" th:field="*{tire.tireId}" required/></td>-->
+<!--      </tr>-->
+<!--      <tr th:each="tire : ${customer.car.tireList}">-->
+<!--        <td>Tire Make:</td>-->
+<!--        <td><input type="text" th:field="*{tire.make}" required/></td>-->
+<!--      </tr>-->
+      <tr th:each="tire : ${customer.car.tireList}">
+        <td>Tire Id:</td>
+        <td><input type="text" th:field="*{car.tireList[__${tireStat.index}__].tireId}" required/></td>
+      </tr>
+      <tr th:each="tire : ${customer.car.tireList}">
+        <td>Tire Make:</td>
+        <td><input type="text" th:field="*{car.tireList[__${tireStat.index}__].make}" required/></td>
+      </tr>
+    </table>
+<!--      <table>-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--          <td>-->
+<!--            id-->
+<!--          </td>-->
+<!--          <td>-->
+<!--            name-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="tire : ${customer.car.tireList}">-->
+<!--          <td th:text="${tire.tireId}">-->
+
+<!--          </td>-->
+<!--          <td th:text="${tire.make}">-->
+
+<!--          </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--      </table>-->
+      <tr>
+        <td colspan="2"><button type="submit">Save</button></td>
+      </tr>
+
+  </form>
+</div>
+</body>
+</html>

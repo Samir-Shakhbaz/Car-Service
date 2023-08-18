@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer List</title>
+    <div th:replace="fragments :: header"/>
+</head>
+
+<body style="background-color:#EDF1FF">
+
+<div th:replace="fragments :: navigation"></div>
+
+<link th:href="@{/css/style_lamborghini.css}" rel="stylesheet"/>
+
+<body>
+<div align="center">
+
+    <h1>Customer List</h1>
+    <a th:href="@{/customer/new}">Add New Customer</a><br/>
+
+<table border="1" cellpadding="10">
+    <thead>
+    <tr>
+        <th>Customer ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Car Make</th>
+        <th>Car Year</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer : ${customerList}">
+        <td th:text="${customer.id}">Customer ID</td>
+        <td th:text="${customer.firstName}">First Name</td>
+        <td th:text="${customer.lastName}">Last Name</td>
+        <td th:text="${customer.phoneNumber}">Phone Number</td>
+        <td th:text="${customer.car?.make}">Car Make</td>
+        <td th:text="${customer.car?.year}">Car Year</td>
+        <td>
+            <a th:href="@{'/customer/edit/' + ${customer.id}}">Edit</a>
+            <a th:href="@{'/customer/delete/' + ${customer.id}}">Delete</a>
+<!--            <a th:href="@{'/order/new?customerId=' + ${customer.id}}">Create New Order</a><br/>-->
+            <a th:href="@{'/order/new?customerId=' + ${customer.id}}">Create New Order</a>
+
+            <!--            <a th:href="@{/order/new(id=${customer.id}, firstName=${customer.firstName}, lastName=${customer.lastName}, phoneNumber=${customer.phoneNumber})}">-->
+<!--                Create New Order-->
+<!--            </a>-->
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

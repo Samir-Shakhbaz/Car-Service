@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Completed</title>
+  <div th:replace="fragments :: header"/>
+</head>
+
+<body style="background-color:#EDF1FF">
+
+<div th:replace="fragments :: navigation"></div>
+
+<div class="completed-overlay">
+  <h3 class="completed-text">COMPLETED <span th:text="${#temporals.format(order.completedAt, 'HH:mm:ss')}"></span></h3>
+</div>
+
+<link th:href="@{/css/style_completed.css}" rel="stylesheet"/>
+
+<h1>Filled Order <span th:text="${order.id}"></span></h1>
+
+<h2>Selected Services:</h2>
+
+<ul>
+  <li th:if="${#bools.isTrue(order.oilChange)}">Oil Change</li>
+  <li th:if="${#bools.isTrue(order.toWinter)}">Change Tires to Winter</li>
+  <li th:if="${#bools.isTrue(order.toSummer)}">Change Tires to Summer</li>
+</ul>
+
+<div align="center">
+
+
+  <h2 style="text-align: center;">Tire List:</h2>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Tire ID</th>
+      <th>Tire Type</th>
+      <th>Tire Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tire : ${order.customer.car.getInstalledTires()}">
+      <td th:text="${tire.tireId}"></td>
+      <td th:text="${tire.type}"></td>
+      <td th:text="${tire.status}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+  <br>
+
+  <h2 style="text-align: center;">Winter To Replace Tire IDs:</h2>
+  <table>
+    <thead>
+    <tr>
+      <td>
+        id
+      </td>
+      <td>
+        name
+      </td>
+      <td>
+        status
+      </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tire : ${order.customer.car.getBookedTires()}">
+      <td th:text="${tire.tireId}"></td>
+      <td th:text="${tire.type}"></td>
+      <td th:text="${tire.status}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h2 style="text-align: center;">Mechanic Assigned: <span th:text="${order.employee.firstName}"></span></h2>
+
+  <br>
+  <br>
+  <br>
+
+</div>
+
+</body>
+
+
+</html>

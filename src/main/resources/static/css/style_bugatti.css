@@ -1,0 +1,36 @@
+h4 {
+    color:white;
+    font-size: 4em;
+}
+
+body {
+  background-color: #fffacd;
+
+}
+
+p {
+  color:white; /* Set the font color to green */
+}
+
+table {
+  table-layout: fixed ;
+  width: 25% ;
+}
+td {
+  width: 25% ;
+}
+
+
+body {
+  background-image:url('images/Bugatti_4.jpg');
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+@media (max-width: 400px) {
+    .table-responsive {
+        font-size:20px !important;
+    }
+}

@@ -1,0 +1,55 @@
+h1 {
+    color:white;
+    font-size: 4em;
+}
+
+h2 {
+    color:white;
+    font-size: 2em;
+}
+
+h3 {
+    color:yellow;
+    font-size: 2em;
+}
+
+body {
+  background-color: #fffacd;
+
+}
+
+input {
+  color: black;
+  background-color: grey;
+}
+
+
+table {
+  table-layout: fixed ;
+  width: 25% ;
+  color:white;
+      font-size: 2em;
+}
+td {
+  width: 25% ;
+}
+
+
+body {
+  background-image:url('images/chevy_inside.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+@media (max-width: 400px) {
+    .table-responsive {
+        font-size:20px !important;
+    }
+}
+
+/*body {
+    background-image:url('images/WhiteHouse.jpg');\
+    color:white;
+}
+*/

@@ -1,0 +1,47 @@
+h1 {
+    color:white;
+    font-size: 4em;
+}
+
+body {
+  background-color: #fffacd;
+
+}
+
+
+a {
+  color: yellow;
+}
+
+
+
+table {
+  border-collapse: collapse;
+  table-layout: auto ;
+  width: 25% ;
+  color:white;
+      font-size: 2em;
+}
+th, td {
+  width: 25% ;
+  padding: 10px;
+}
+
+body {
+  background-image:url('images/Lamborghini.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+@media (max-width: 400px) {
+    .table-responsive {
+        font-size:20px !important;
+    }
+}
+
+/*body {
+    background-image:url('images/WhiteHouse.jpg');\
+    color:white;
+}
+*/
