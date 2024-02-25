@@ -25,7 +25,7 @@ public class Car {
 
     private Long id;
     private String make;
-    private int year;
+    private Integer year;
     private String model;
     @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
     //    @JoinColumn (name = "customer_id")
@@ -33,7 +33,7 @@ public class Car {
     @OneToMany
     private List<Tire> tireList;
 
-    public Car(Long id, String make, String model, int year, Storage storage, List<Tire> tireList) {
+    public Car(Long id, String make, String model, Integer year, Storage storage, List<Tire> tireList) {
         this.id = id;
         this.make = make;
         this.model = model;
@@ -77,7 +77,7 @@ public class Car {
         return tireList;
     }
 
-    public Car(String make, String model, int year){
+    public Car(String make, String model, Integer year){
         this.make = make;
         this.model = model;
         this.year = year;
@@ -95,9 +95,9 @@ public class Car {
 
     public void setModel(String model){this.model = model;}
 
-    public int getYear(){return year;}
+    public Integer getYear(){return year;}
 
-    public void setYear(int year){this.year = year;}
+    public void setYear(Integer year){this.year = year;}
 
     public List<Tire> getInstalledTires(){
         List<Tire> installedTires = new ArrayList<>();

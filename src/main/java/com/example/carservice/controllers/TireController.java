@@ -1,19 +1,18 @@
 package com.example.carservice.controllers;
 
-import com.example.carservice.modelss.Car;
-import com.example.carservice.modelss.Customer;
-import com.example.carservice.modelss.Storage;
-import com.example.carservice.modelss.Tire;
+import com.example.carservice.modelss.*;
 import com.example.carservice.repositories.CarRepository;
 import com.example.carservice.repositories.StorageRepository;
 import com.example.carservice.repositories.TireRepository;
 import com.example.carservice.services.CarService;
 import com.example.carservice.services.TireService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,19 +70,51 @@ public class TireController {
 //        storageRepository.save(storage);
 //    }
 
-    @GetMapping("/winter-tires-list")
-    public String winterTiresList(Model model) {
-        List<Tire> allTiresList = tireService.getAllTires();
+//    @GetMapping("/winter-tires-list")
+//    public String winterTiresList(Model model) {
+//        List<Tire> allTiresList = tireService.getAllTires();
+//
+//        // If the winter tire list is empty, populate it with winter tires
+//        if (allTiresList.isEmpty()) {
+//            tireService.initializeTires();
+//            allTiresList = tireService.getAllTires();
+//        }
+//
+//        System.out.println("Winter Tires List Size: " + allTiresList.size()); // Add this line
+//
+//        model.addAttribute("allTiresList", allTiresList);
+//        return "winter-tires-list";
+//    }
 
-        // If the winter tire list is empty, populate it with winter tires
-        if (allTiresList.isEmpty()) {
-            tireService.initializeTires();
-            allTiresList = tireService.getAllTires();
+    @GetMapping("/winter-tires-list")
+    public String winterTiresList(Model model, @RequestParam(defaultValue = "tireId-asc") String[] sort) {
+        List<Sort.Order> orders = new ArrayList<>();
+
+        for (String sortOrder : sort) {
+            String[] _sort = sortOrder.split("-");
+            if (_sort.length > 1) {
+                orders.add(new Sort.Order(getSortDirection(_sort[1]), _sort[0]));
+            } else {
+                //
+                //  to ascending order if no direction is specified
+                orders.add(new Sort.Order(Sort.Direction.ASC, _sort[0]));
+            }
         }
 
-        System.out.println("Winter Tires List Size: " + allTiresList.size()); // Add this line
+        List<Tire> allTiresList = tireService.getAllTires(Sort.by(orders));
 
         model.addAttribute("allTiresList", allTiresList);
         return "winter-tires-list";
     }
+
+    private Sort.Direction getSortDirection(String direction) {
+        if (direction.equalsIgnoreCase("desc")) {
+            return Sort.Direction.DESC;
+        }
+        return Sort.Direction.ASC;
+    }
+
+
+
+
 }

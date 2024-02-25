@@ -105,6 +105,7 @@ public class OrderController {
         order.setStatus("completed");
         if(order.getCompletedAt() == null){
             order.setCompletedAt(LocalDateTime.now());
+            order.getEmployee().setStatus("Available");
         }
         orderService.getById(orderId);//nichego ne delaet
         orderService.saveOrder(order);

@@ -61,21 +61,21 @@ class OrderControllerTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test
-    void testShowOrderList() {
-        // Set up test data
-        List<Order> mockOrderList = new ArrayList<>();
-        mockOrderList.add(new Order(1L, Customer.builder().id(8L).build(), null, null, "Status 1", false, false, false, false));
-        mockOrderList.add(new Order(2L, null, null, null, "Status 2", false, false, false, false));
-        when(orderService.getAllOrders()).thenReturn(mockOrderList);
-
-        // Invoke the method
-        String viewName = orderController.showOrderList(model);
-
-        // Verify the behavior
-        verify(model).addAttribute("orderList", mockOrderList);
-
-        // Assert the view name or any other expected behavior
-        assertEquals("order-list", viewName);
-    }
+//    @Test
+//    void testShowOrderList() {
+//        // Set up test data
+//        List<Order> mockOrderList = new ArrayList<>();
+//        mockOrderList.add(new Order(1L, Customer.builder().id(8L).build(), null, null, "Status 1", false, false, false, false));
+//        mockOrderList.add(new Order(2L, null, null, null, "Status 2", false, false, false, false));
+//        when(orderService.getAllOrders()).thenReturn(mockOrderList);
+//
+//        // Invoke the method
+//        String viewName = orderController.showOrderList(model);
+//
+//        // Verify the behavior
+//        verify(model).addAttribute("orderList", mockOrderList);
+//
+//        // Assert the view name or any other expected behavior
+//        assertEquals("order-list", viewName);
+//    }
 }

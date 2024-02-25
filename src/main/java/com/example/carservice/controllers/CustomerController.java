@@ -48,14 +48,14 @@ public class CustomerController {
     public String saveCustomer(@ModelAttribute("customer") Customer customer,
                                @ModelAttribute("car") Car car,
                                @RequestParam("car.make") String carMake,
-                               @RequestParam("car.year") int carYear) {
+                               @RequestParam("car.year") Integer carYear) {
 
         car.setMake(carMake);
         car.setYear(carYear);
         tireService.assignTires(car);
         tireService.assignWinterTires(car);
         customer.setCar(car);
-        carService.saveCar(car); // Save the car entity first
+        carService.saveCar(car); // saving the car entity first
         customerService.saveCustomer(customer);
         return "redirect:/customer/customer-list";
     }

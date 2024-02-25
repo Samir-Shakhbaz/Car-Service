@@ -4,6 +4,7 @@ import com.example.carservice.modelss.*;
 import com.example.carservice.repositories.CustomerRepository;
 import com.example.carservice.repositories.TireRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -198,8 +199,11 @@ public class TireService {
         return tireRepository.findById(id);
     }
 
-    public List<Tire> getAllTires() {
-        return tireRepository.findAll();
-    }
+//    public List<Tire> getAllTires() {
+//        return tireRepository.findAll();
+//    }
 
+    public List<Tire> getAllTires(Sort sort) {
+        return tireRepository.findAll(sort);
+    }
 }

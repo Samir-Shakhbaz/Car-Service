@@ -18,13 +18,22 @@
 
     <table border="1" cellpadding="10">
         <thead>
+<!--        <tr>-->
+<!--            <th>Tire ID</th>-->
+<!--            <th>Make</th>-->
+<!--            <th>Status</th>-->
+<!--            <th>Type</th>-->
+<!--            <th>Actions</th>-->
+<!--        </tr>-->
+
         <tr>
-            <th>Tire ID</th>
-            <th>Make</th>
-            <th>Status</th>
-            <th>Type</th>
+            <th><a th:href="@{/tire/winter-tires-list(sort='tireId-asc')}">Tire ID</a></th>
+            <th><a th:href="@{/tire/winter-tires-list(sort='make-asc')}">Make</a></th>
+            <th><a th:href="@{/tire/winter-tires-list(sort='status-asc')}">Status</a></th>
+            <th><a th:href="@{/tire/winter-tires-list(sort='type-asc')}">Type</a></th>
             <th>Actions</th>
         </tr>
+
         </thead>
         <tbody>
         <tr th:each="tire : ${allTiresList}">

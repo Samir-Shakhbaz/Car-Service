@@ -2,6 +2,7 @@ package com.example.carservice.modelss;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.domain.Sort;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -41,6 +42,9 @@ public class Order {
     private boolean toSummer;
 
     private boolean completed;
+
+    public Order(Sort.Direction sortDirection, String s) {
+    }
 
 //    public void signoff(ServiceOwner serviceOwner) {
 //
