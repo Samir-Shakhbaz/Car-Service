@@ -142,15 +142,31 @@
 <!--                    </select></td>-->
 <!--            </tr>-->
 
+<!--            <tr>-->
+<!--                <td>Assign Employee:-->
+<!--                    <select class="form-select" name="employeeId" style="color: blue;">-->
+<!--                        <option th:if="${employeeList.isEmpty()}">None Available</option>-->
+<!--                        <option value="" selected disabled>Choose Employee</option>-->
+<!--                        <option th:each="employee : ${employeeList}" th:value="${employee.id}" th:text="${employee.firstName}" th:unless="${employee.orders != null and employee.orders.size() > 0}" style="color: blue;"></option>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--            </tr>-->
+
             <tr>
                 <td>Assign Employee:
                     <select class="form-select" name="employeeId" style="color: blue;">
                         <option th:if="${employeeList.isEmpty()}">None Available</option>
                         <option value="" selected disabled>Choose Employee</option>
-                        <option th:each="employee : ${employeeList}" th:value="${employee.id}" th:text="${employee.firstName}" th:unless="${employee.orders != null and employee.orders.size() > 0}" style="color: blue;"></option>
+                        <option th:each="employee : ${employeeList}"
+                                th:value="${employee.id}"
+                                th:text="${employee.firstName}"
+                                th:if="${employee.status == 'Available'}"
+                                style="color: blue;">
+                        </option>
                     </select>
                 </td>
             </tr>
+
 
         </table>
 

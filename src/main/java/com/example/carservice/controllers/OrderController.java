@@ -82,21 +82,43 @@ public class OrderController {
         return "filled-order";
     }
 
+//    @PostMapping("/completed/{orderId}")
+//    public String markOrderAsCompleted(Model model, @PathVariable Long orderId) {
+//        Order order = orderService.getById(orderId);
+//        order.setCompleted(true);
+//        order.setStatus("completed");
+//        if(order.getCompletedAt() == null){
+//            order.setCompletedAt(LocalDateTime.now());
+//            order.getEmployee().setStatus("Available");
+//        }
+//
+//        orderService.getById(orderId);//nichego ne delaet
+//        orderService.saveOrder(order);
+//        model.addAttribute("order", order);
+//        return "completed";
+//    }
+
     @PostMapping("/completed/{orderId}")
     public String markOrderAsCompleted(Model model, @PathVariable Long orderId) {
         Order order = orderService.getById(orderId);
-        order.setCompleted(true);
-        order.setStatus("completed");
-        if(order.getCompletedAt() == null){
+        if (order != null && order.getCompletedAt() == null) {
+            order.setCompleted(true);
+            order.setStatus("completed");
             order.setCompletedAt(LocalDateTime.now());
-            order.getEmployee().setStatus("Available");
+
+            Employee employee = order.getEmployee();
+            if (employee != null) {
+                employee.setStatus("Available");
+                employeeService.saveEmployee(employee); // Save the updated employee
+            }
+
+            orderService.saveOrder(order); // Save the updated order
         }
 
-        orderService.getById(orderId);//nichego ne delaet
-        orderService.saveOrder(order);
         model.addAttribute("order", order);
         return "completed";
     }
+
 
     @GetMapping("/completed/{orderId}")
     public String goToCompletedOrder(Model model, @PathVariable Long orderId) {

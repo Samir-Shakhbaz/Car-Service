@@ -37,6 +37,21 @@ public class EmployeeService {
                 .collect(Collectors.toList());
     }
 
+    //same as above without
+//    public List<Employee> getAvailableEmployees() {
+//        List<Employee> allEmployees = getAllEmployees();
+//        List<Employee> availableEmployees = new ArrayList<>();
+//
+//        for (Employee employee : allEmployees) {
+//            if (employee.getOrders().isEmpty()) {
+//                availableEmployees.add(employee);
+//            }
+//        }
+//
+//        return availableEmployees;
+//    }
+
+
     public void employeeStatus() {
         List<Employee> employeeList = getAllEmployees();
 

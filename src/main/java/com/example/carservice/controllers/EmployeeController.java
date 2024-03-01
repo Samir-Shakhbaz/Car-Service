@@ -22,9 +22,9 @@ public class EmployeeController {
 
     @GetMapping("/employee-list")
     public String customerList(Model model) {
-        // Here you call the service to retrieve all the customers
+        // Here we call the service to retrieve all the customers
         final List<Employee> employeeList = employeeService.getAllEmployees();
-        // Once the customers are retrieved, you can store them in model and return it to the view
+        // Once the customers are retrieved, we can store them in model and return it to the view
         model.addAttribute("employeeList", employeeList);
         System.out.println("Employee List: " + employeeList);
         return "employee-list";
