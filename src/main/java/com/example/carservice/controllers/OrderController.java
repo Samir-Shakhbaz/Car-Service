@@ -105,7 +105,11 @@ public class OrderController {
         order.setStatus("completed");
         if(order.getCompletedAt() == null){
             order.setCompletedAt(LocalDateTime.now());
-            order.getEmployee().setStatus("Available");
+            Employee employee = order.getEmployee();
+            if (employee != null) {
+                employee.setStatus("Available");
+                employeeService.saveEmployee(employee); // Persist the employee's new status
+            }
         }
         orderService.getById(orderId);//nichego ne delaet
         orderService.saveOrder(order);
@@ -170,8 +174,9 @@ public class OrderController {
             model.addAttribute("order", order);
             return "redirect:/order/filled-order/" + order.getId();
         } else {
-            System.out.println("ERROR");
-            return null;
+            //                System.out.println("ERROR");
+//                return null;
+            return "redirect:/order/new?customerId=" + customerId;
         }
     }
 

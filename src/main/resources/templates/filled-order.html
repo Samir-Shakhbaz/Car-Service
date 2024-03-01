@@ -103,10 +103,21 @@
     <br>
 
 
+<!--    <form th:action="@{/order/completed/{orderId}(orderId=${order.id})}" method="post">-->
+<!--        <label><input type="checkbox" name="orderCompleted"> Order Completed</label>-->
+<!--        <button type="submit">Submit</button>-->
+<!--    </form>-->
+
     <form th:action="@{/order/completed/{orderId}(orderId=${order.id})}" method="post">
-        <label><input type="checkbox" name="orderCompleted"> Order Completed</label>
-        <button type="submit">Submit</button>
+        <label><input type="checkbox" id="orderCompletedCheckbox" name="orderCompleted"> Order Completed</label>
+        <button type="submit" id="submitButton" disabled>Submit</button>
     </form>
+
+    <script>
+        document.getElementById('orderCompletedCheckbox').addEventListener('change', function() {
+            document.getElementById('submitButton').disabled = !this.checked;
+        });
+    </script>
 
     <br>
     <br>

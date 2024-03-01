@@ -82,16 +82,32 @@
         <table border="0" cellpadding="10">
             <tr>
                 <td>Oil Change:</td>
-                <td><input type="checkbox" th:field="*{oilChange}"></td>
+                <td><input type="checkbox" th:field="*{oilChange}" id="oilChangeCheckbox"></td>
             </tr>
             <tr>
                 <td>Change Tires to Winter:</td>
-                <td><input type="checkbox" th:field="*{toWinter}"></td>
+                <td><input type="checkbox" th:field="*{toWinter}" id="toWinterCheckbox"></td>
             </tr>
             <tr>
                 <td>Change Tires to Summer:</td>
-                <td><input type="checkbox" th:field="*{toSummer}"></td>
+                <td><input type="checkbox" th:field="*{toSummer}" id="toSummerCheckbox"></td>
             </tr>
+
+            <script>
+                document.getElementById('toWinterCheckbox').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('toSummerCheckbox').checked = false;
+                    }
+                });
+
+                document.getElementById('toSummerCheckbox').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('toWinterCheckbox').checked = false;
+                    }
+                });
+            </script>
+
+
 <!--            <tr>-->
 <!--                <td>Last Name:</td>-->
 <!--                <td><input type="text" th:field="*{lastName}" required/></td>-->
@@ -107,7 +123,7 @@
 
 
 <!--            <input type="hidden" name="employeeId" th:value="${employee.id}" />-->
-        <h3>Service Needed:</h3>
+        <h3>Employee on Duty:</h3>
 
         <table border="0" cellpadding="10">
             <thead>

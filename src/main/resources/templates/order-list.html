@@ -44,16 +44,18 @@
 <!--            <td th:text="${order.status}">Order Status</td>-->
             <td>
                 <a th:if="${order.status == 'completed'}" th:href="@{/order/completed/{orderId}(orderId=${order.id})}">
-                    <span th:text="${order.status}"></span>
+                    <span th:text="${order.status}">Order Status</span>
                 </a>
-                <span th:unless="${order.status == 'completed'}" th:text="${order.status}"></span>
+                <span th:unless="${order.status == 'completed'}" th:text="${order.status}">Order Status</span>
             </td>
+
             <td th:text="${order.employee.phoneNumber}">Phone Number</td>
 
             <td>
 
 <!--                <a th:href="@{'/customer/edit/' + ${customer.id}}">Edit</a>-->
                 <a th:href="@{'/order/delete/' + ${order.id}}">Delete</a>
+                <a th:href="@{'/order/filled-order/' + ${order.id}}">View Order</a>
 <!--                &lt;!&ndash;            <a th:href="@{'/order/new?customerId=' + ${customer.id}}">Create New Order</a><br/>&ndash;&gt;-->
 <!--                <a th:href="@{'/order/new?customerId=' + ${customer.id}}">Create New Order</a>-->
 

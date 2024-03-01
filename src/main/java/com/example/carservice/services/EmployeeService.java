@@ -21,7 +21,13 @@ public class EmployeeService {
         return employeeRepository.saveAll(employees);
     }
 
-    public Employee getEmployee(Long id) {return employeeRepository.findById(id).orElse(null);}
+    public Employee getEmployee(Long id) {
+        if (id == null) {
+            return null;
+        }
+        return employeeRepository.findById(id).orElse(null);
+    }
+
 
     public List<Employee> getAvailableEmployees() {
      /*   List<Employee> allEmployees = getAllEmployees();*/
@@ -57,5 +63,9 @@ public class EmployeeService {
 //        employeeRepository.saveAll();
         System.out.println(employeeList);
         // Add more employee names as needed
+    }
+
+    public void saveEmployee(Employee employee) {
+        employeeRepository.save(employee);
     }
 }
