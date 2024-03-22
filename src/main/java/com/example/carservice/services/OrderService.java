@@ -59,7 +59,8 @@ public class OrderService {
 
 
 
-    public void removeTires(List<Tire> remove, List<Tire> set, Map<Car, List<Tire>> removeMap, Map<Car, List<Tire>> setMap) {
+    public void removeTires(List<Tire> remove, List<Tire> set, Map<Car,
+            List<Tire>> removeMap, Map<Car, List<Tire>> setMap) {
         for (int i = 0; i < 4; i++) {
             //getting tire at index 0;
             Tire tire = car.getTireList().get(0);
@@ -95,15 +96,12 @@ public class OrderService {
                 //then we pull the tires
 
                 Tire tire = tireList.remove(0);
-                setMap.put(car, tireList);//skolko ostalos'
+                setMap.put(car, tireList);
                 car.getTireList().add(tire);
             }
         } else {
             for (int i = 0; i < 4; i++) {
                 Tire tire = set.remove(0);
-//                    List<Tire> tireList = new ArrayList<>();
-//                    tireList.add(tireWinter);
-//                storage.getThisCarTiresWinter().put(car, tireList);
                 car.getTireList().add(tire);
             }
         }

@@ -108,9 +108,14 @@
 <!--        <button type="submit">Submit</button>-->
 <!--    </form>-->
 
+<!--    <form th:action="@{/order/completed/{orderId}(orderId=${order.id})}" method="post">-->
+<!--        <label><input type="checkbox" id="orderCompletedCheckbox" name="orderCompleted"> Order Completed</label>-->
+<!--        <button type="submit" id="submitButton" disabled>Submit</button>-->
+<!--    </form>-->
+
     <form th:action="@{/order/completed/{orderId}(orderId=${order.id})}" method="post">
-        <label><input type="checkbox" id="orderCompletedCheckbox" name="orderCompleted"> Order Completed</label>
-        <button type="submit" id="submitButton" disabled>Submit</button>
+        <label><input type="checkbox" name="orderCompleted" th:disabled="${order.completed}"> Order Completed</label>
+        <button type="submit" th:disabled="${order.completed}">Submit</button>
     </form>
 
     <script>

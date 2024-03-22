@@ -17,6 +17,9 @@ public class CarService {
     CarRepository carRepository;
 
     public Car saveCar (Car car) {
+//        if (car == null) {
+//            throw new IllegalArgumentException("Car must not be null");
+//        }
         return carRepository.save(car);
     }
 

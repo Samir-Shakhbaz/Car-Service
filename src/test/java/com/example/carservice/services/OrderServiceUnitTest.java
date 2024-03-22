@@ -10,10 +10,12 @@ import com.example.carservice.services.CustomerService;
 import com.example.carservice.services.OrderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.AdditionalAnswers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -26,7 +28,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-@SpringBootTest
+//@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class OrderServiceUnitTest {
 
     @Mock
@@ -36,15 +39,14 @@ class OrderServiceUnitTest {
     private OrderService orderService;
 
     @Test
-    public void test_saveNewOrder(){
-
+    public void testSaveNewOrder(){
         Customer customer = new Customer();
         Employee employee = new Employee();
 
-
         when(orderRepository.save(any())).then(AdditionalAnswers.returnsFirstArg());
 
-        Order actual = orderService.saveNewOrder(customer, employee, true, false, true, "as");
+        Order actual = orderService.saveNewOrder(customer, employee, true,
+                            false, true, "in progress");
 
         assertEquals(true, actual.isToWinter());
         assertEquals("in progress", actual.getStatus());

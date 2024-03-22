@@ -17,9 +17,14 @@ public class HomeController {
 
     @GetMapping("/home")
     public String greeting(Model model) {
+        WeatherAPIResponse weatherAPIResponse;
 
-//        WeatherAPIResponse weatherAPIResponse = weatherAPIClient.getWeather("Moscow");
-//        model.addAttribute("weather", weatherAPIResponse);
+        try {
+            weatherAPIResponse = weatherAPIClient.getWeather("Moscow");
+            model.addAttribute("weather", weatherAPIResponse);
+        } catch(Exception e){
+            model.addAttribute("weather", "no data");
+        }
 
         return "home";
     }

@@ -171,7 +171,28 @@
         </table>
 
         <div colspan="2">
-            <button type="submit" th:disabled="${employeeList.isEmpty()}">Save</button>
+            <button type="submit" id="submitButton" data-employees-empty="${employeeList.isEmpty()}" disabled>Save</button>
+
+            <script>
+                function updateButtonState() {
+                    var employeesEmpty = document.getElementById('submitButton').getAttribute('data-employees-empty') === 'true';
+                    var oilChangeChecked = document.getElementById('oilChangeCheckbox').checked;
+                    var toWinterChecked = document.getElementById('toWinterCheckbox').checked;
+                    var toSummerChecked = document.getElementById('toSummerCheckbox').checked;
+
+                    var shouldEnableButton = (oilChangeChecked || toWinterChecked || toSummerChecked) && !employeesEmpty;
+                    document.getElementById('submitButton').disabled = !shouldEnableButton;
+                }
+
+                document.getElementById('oilChangeCheckbox').addEventListener('change', updateButtonState);
+                document.getElementById('toWinterCheckbox').addEventListener('change', updateButtonState);
+                document.getElementById('toSummerCheckbox').addEventListener('change', updateButtonState);
+
+                // Initial state check
+                updateButtonState();
+            </script>
+
+
         </div>
         </form>
     <br>

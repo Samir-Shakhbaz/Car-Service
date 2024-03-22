@@ -119,7 +119,6 @@ public class OrderController {
         return "completed";
     }
 
-
     @GetMapping("/completed/{orderId}")
     public String goToCompletedOrder(Model model, @PathVariable Long orderId) {
         Order order = orderService.getById(orderId);
