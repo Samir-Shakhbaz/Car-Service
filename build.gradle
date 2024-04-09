@@ -34,6 +34,7 @@ dependencies {
 //	testImplementation 'org.springframework.security:spring-security-test'
 //	implementation 'javax.persistence:javax.persistence-api'
 	implementation 'org.springframework.data:spring-data-jpa'
+	implementation 'org.glassfish:javax.json:1.1.4'
 
 		// Other dependencies
 
@@ -54,6 +55,8 @@ dependencies {
 	testImplementation 'org.testcontainers:mysql'
 	testImplementation 'io.rest-assured:rest-assured'
 	testImplementation 'org.testcontainers:testcontainers:1.18.3'
+
+	implementation group: 'com.stripe', name: 'stripe-java', version: '24.24.0-beta.1'
 
 }
 

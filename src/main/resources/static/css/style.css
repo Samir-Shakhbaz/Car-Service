@@ -35,6 +35,14 @@ body {
   cursor: pointer;
 }
 
+/* New styles for weather and jokes */
+.weather {
+    color: white; /* Example color for weather */
+}
+
+.joke {
+    color: yellow; /* Example color for jokes */
+}
 
 @media (max-width: 400px) {
     .table-responsive {

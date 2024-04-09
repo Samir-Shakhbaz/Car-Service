@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Payment</title>
+    <link th:replace="fragments :: header" />
+    <link th:href="@{/css/style_transformers.css}" rel="stylesheet" />
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+<div th:replace="fragments :: navigation"></div>
+<div id="payment-form">
+    <input id="card-number" type="text" placeholder="Card Number">
+    <input id="card-expiry" type="text" placeholder="MM/YY">
+    <input id="card-cvc" type="text" placeholder="CVC">
+    <button id="submit-payment">Pay Now</button>
+</div>
+
+<script>
+    const stripe = Stripe('pk_test_YourPublicKey');
+
+    document.getElementById('submit-payment').addEventListener('click', async () => {
+        const cardElement = {
+            number: document.getElementById('card-number').value,
+            exp_month: document.getElementById('card-expiry').value.split('/')[0],
+            exp_year: document.getElementById('card-expiry').value.split('/')[1],
+            cvc: document.getElementById('card-cvc').value
+        };
+
+        const result = await stripe.createPaymentMethod({
+            type: 'card',
+            card: cardElement
+        });
+
+        if (result.error) {
+            console.error(result.error.message);
+        } else {
+            const paymentIntent = await fetch('/create-payment-intent', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    amount: 1000 // Example amount in cents
+                })
+            }).then(res => res.json());
+
+            const { paymentMethod, error } = await stripe.confirmCardPayment(paymentIntent.clientSecret, {
+                payment_method: result.paymentMethod.id
+            });
+
+            if (error) {
+                console.error(error.message);
+            } else {
+                console.log('Payment successful!');
+            }
+        }
+    });
+</script>
+</body>
+</html>
